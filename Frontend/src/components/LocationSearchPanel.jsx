@@ -1,6 +1,7 @@
 import React from "react";
 
 const LocationSearchPanel = ()=>{
+  const location = ["15B near aabid house malek vada","16C near nadim house malek vada","15A near aakib house malek vada","13C near rasid mama house"]
     return(
         <div>
           <div className="p-3 flex justify-center items-center gap-4 my-2 border-2 border-grey-100 active:border-black roudede-xl">
