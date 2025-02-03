@@ -10,6 +10,8 @@ const Home = () => {
     const [panelOpen,setPanelOpen] = useState(false);
     const panelRef=useRef(null);
     const panelCloseRef=useRef(null);
+    const [vehicalPanel,setVehicalPanel]=useState(false);
+    const vehicalPanelRef=useGSAP(null);
 
     const submitHandler =(e)=>{
         e.preventDefault();
@@ -33,12 +35,24 @@ const Home = () => {
             })
         }
     },[panelOpen])
+
+    useGSAP(function(){
+        if(vehicalPanel){
+            gsap.to(vehicalPanelRef.current,{
+                transform:"translateY(0)"
+            })
+        }else{
+            gsap.to(vehicalPanelRef.current,{
+                transform:"translateY(100%)"
+            })
+        }
+        },[vehicalPanel])
     return (
         <div className="h-screen relative overflow-hidden">
            
     `       <div className="absolute top-0 h-screen w-screen ">
                  <img className="w-16 absolute left-5 top-5" src="https://www.pngall.com/wp-content/uploads/4/Uber-Logo-PNG-Free-Image.png" alt="" />
-                 <img className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" />
+                 <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" />
             </div>
             <div className="absolute  top-0 w-full flex flex-col justify-end h-screen  ">
                 <div className="h-[30%] bg-white p-5">
@@ -73,11 +87,11 @@ const Home = () => {
                 </div>
 
                 <div ref={panelRef} className="  h-[] bg-white">
-                        {<LocationSearchPanel/>}
+                        {<LocationSearchPanel setPanelOpen={setPanelOpen} setVehicalPanel={setVehicalPanel}/>}
                 </div>
             </div>
 
-            <div className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white translate-y-full">
+            <div ref={vehicalPanelRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white translate-y-full">
                 <div className="flex mb-2 border-2 active:border-black rounded-xl items-center justify-between bg-white w-full p-3">
                     <img className="h-12" src="https://i.pinimg.com/originals/93/c1/05/93c105244c0a3de81267a89cb13386f7.png" alt="" />
                     <div className=" w-1/2">
