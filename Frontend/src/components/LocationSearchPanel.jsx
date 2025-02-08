@@ -4,7 +4,7 @@ const LocationSearchPanel = ({setPanelOpen,setVehicalPanel})=>{
   const locations = ["15B near aabid house malek vada","16C near nadim house malek vada","15A near aakib house malek vada","13C near rasid mama house malek wada"];
   
     return(
-        <div>
+        <div className="py-5">
           {
             locations.map((e,idx)=>{
               return(
