@@ -107,12 +107,12 @@ const Home = () => {
                 </div>
             </div>
 
-            <div ref={vehicalPanelRef} className="fixed z-10 bottom-0 w-full px-3 py-10 bg-white translate-y-full ">
+            <div ref={vehicalPanelRef} className="fixed z-10 bottom-0 w-full px-3 py-10 bg-white translate-y-full pt-12">
                <VehicalPanel setVehicalPanel={setVehicalPanel} setConfirmeRidePanel={setConfirmeRidePanel}/>
             </div>
 
-            <div ref={confirmeRidePanelRef} className="fixed z-10 bottom-0 w-full px-3 py-10 bg-white translate-y-full ">
-               <ConfirmRide/>
+            <div ref={confirmeRidePanelRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white translate-y-full pt-12">
+               <ConfirmRide setConfirmeRidePanel={setConfirmeRidePanel}/>
             </div>
         </div>
     
