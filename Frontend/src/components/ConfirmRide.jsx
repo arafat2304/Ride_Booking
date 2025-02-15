@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConfirmRide = ({setConfirmeRidePanel})=>{
+const ConfirmRide = ({setConfirmeRidePanel,setVehicalFound})=>{
     return(
         <div className="w-full">
          <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setConfirmeRidePanel(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
@@ -31,7 +31,10 @@ const ConfirmRide = ({setConfirmeRidePanel})=>{
                     </div>
                 </div>
             </div>
-            <button className="w-full mt-5 bg-green-600 p-2 font-semibold text-white rounded-lg">Confirm Ride</button>
+            <button onClick={()=>{
+                setVehicalFound(true);
+                setConfirmeRidePanel(false)}
+                } className="w-full mt-5 bg-green-600 p-2 font-semibold text-white rounded-lg">Confirm Ride</button>
          </div>
         </div>
     )
