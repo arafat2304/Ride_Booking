@@ -38,12 +38,14 @@ const RidePopUp =({setRidePopUpPanel,setConfirmRidePopUpPanel})=>{
                    </div>
                </div>
            </div>
-           <button onClick={()=>{setConfirmRidePopUpPanel(true)}
-               } className="w-full mt-1 bg-green-600 p-2 font-semibold text-white rounded-lg">Accept</button>
+          <div className="flex justify-between w-full">
+          <button onClick={()=>{setConfirmRidePopUpPanel(true)}
+               } className="w-30 mt-1 bg-green-600 p-4 m-2 px-10 font-semibold text-white rounded-lg">Accept</button>
 
-<button onClick={()=>{setRidePopUpPanel(false)}
-               } className="w-full mt-1 bg-gray-500 p-2 font-semibold text-white rounded-lg">Ignore</button>
-        </div>
+            <button onClick={()=>{setRidePopUpPanel(false)}
+               } className="w-30 mt-1 bg-gray-500 p-4 px-10 m-2 font-semibold text-white rounded-lg">Ignore</button>
+          </div>
+        </div>  
        </div>
     )
 }

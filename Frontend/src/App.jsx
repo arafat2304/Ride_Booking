@@ -13,6 +13,7 @@ import CaptainHome from './pages/CaptainHome';
 import CaptainProtectionWeapper from './pages/CaptainProtectionWrapper';
 import CaptainLogout from "./pages/CaptainLogout";
 import Riding from './components/Riding';
+import CaptainRiding from './pages/CaptainRiding';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
             </UserProtecterWrapper>
         } />
         <Route path="/login" element={<UserLogin/>}/>
+        <Route path='/captain-riding' element={<CaptainRiding/>}/>
         <Route path="/riding" element={<Riding/>}/>
         <Route path="/signup" element={<UserSignup/>}/>
         <Route path="/captain-login" element={<CaptainLogin />} />
