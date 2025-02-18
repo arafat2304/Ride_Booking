@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const ConfirmRidePopUp = ({setConfirmRidePopUpPanel,setRidePopUpPanel})=>{
-
-    const [otp,setOtp]=useState("");
-
+const FinsihRidePopUp = ({setFinishRidePanel}) =>{
     return(
         <div className="w-full">
-        <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setConfirmRidePopUpPanel(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
-        <h3 className="text-2xl font-semibold">Confirm this Ride to Start</h3>
+        <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setFinishRidePanel(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
+        <h3 className="text-2xl font-semibold">Finish this Ride!</h3>
 
         <div className="flex items-center justify-between mt-5 border-2 border-yellow-400 p-3 -mb-3">
             <div className="flex items-center gap-4">
@@ -43,16 +40,11 @@ const ConfirmRidePopUp = ({setConfirmRidePopUpPanel,setRidePopUpPanel})=>{
                </div>
            </div>
           <div className="w-full mt-7">
-            <form action="" onSubmit={(e)=>e.preventDefault}>
-                <input type="number" value={otp}  onChange={(e)=>setOtp(e.target.value)} className="bg-[#eee] w-full border rounded-lg text-lg px-8 py-3 mb-5 font-mono" placeholder="Enter OTP"/>
-            <Link to={"/captain-riding"} className="w-full text-lg flex justify-center bg-green-600 p-3 font-semibold text-white rounded-lg">Confirm</Link>
-
-<button onClick={()=>{setConfirmRidePopUpPanel(false),setRidePopUpPanel(false)}
-   } className="w-full mt-2 text-lg bg-red-600 p-3 font-semibold text-white rounded-lg">Ignore</button>
-            </form>
+            <Link to={"/captain-home"} className="w-full  flex justify-center bg-green-600 p-3 font-semibold text-white rounded-lg">Finish Ride</Link>
           </div>
         </div>
        </div>
     )
 }
-export default ConfirmRidePopUp;
+
+export default FinsihRidePopUp;
