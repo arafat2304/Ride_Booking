@@ -7,6 +7,7 @@ const connectToDB=require("./DB/db");
 const userRoute=require("./routes/user");
 const captainRoute=require("./routes/captain");
 const cookieParser=require("cookie-parser");
+const mapRoute=require("./routes/map.routes");
 
 connectToDB();
 
@@ -19,7 +20,9 @@ app.get("/",(req,res)=>{
     res.send("Hello World")
 });
 
+
 app.use("/users",userRoute);
 app.use("/captains",captainRoute);
+app.use("/maps",mapRoute);
 
 module.exports=app;
