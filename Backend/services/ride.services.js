@@ -1,6 +1,7 @@
 const rideModel = require("../module/ride")
 const mapServices = require('./map.services');
 const {getDistanceTime} = mapServices;
+const crypto = require('crypto');
 
 async function getFare(origin,destination){
     if(!origin || !destination){
@@ -8,6 +9,7 @@ async function getFare(origin,destination){
     }
     // logic to calculate fare
     const distanceTime = await getDistanceTime(origin,destination);
+    console.log(distanceTime);
 
     const baseFare={
         auto:30,
@@ -28,28 +30,36 @@ async function getFare(origin,destination){
     }
 
     const fare={
-        auto: baseFare.auto + (distanceTime.distance * prKmRate.auto) + (distanceTime.time * perMinuteRate.auto),
-        car: baseFare.car + (distanceTime.distance * prKmRate.car) + (distanceTime.time * perMinuteRate.car),
-        motorcycle:baseFare.motorcycle + (distanceTime.distance * prKmRate.motorcycle) + (distanceTime.time * perMinuteRate.motorcycle),
+        auto: baseFare.auto + ((distanceTime.distance.value/1000) * prKmRate.auto) + ((distanceTime.duration.value/60) * perMinuteRate.auto),
+        car: baseFare.car + ((distanceTime.distance.value/1000) * prKmRate.car) + ((distanceTime.duration.value/60) * perMinuteRate.car),
+        motorcycle:baseFare.motorcycle + ((distanceTime.distance.value/1000) * prKmRate.motorcycle) + ((distanceTime.duration.value/60) * perMinuteRate.motorcycle),
     }
+    console.log(fare);
     
     return fare;
 }
 
-module.exports.createRide = async ({user, pickUp, destination, vehicalType}) => {
-    if(!user || !pickUp || !destination || !vehicalType){
+function generateOtp(num){
+    const otp = crypto.randomInt(Math.pow(10,num-1),Math.pow(10,num)).toString();
+    return otp;
+}
+
+module.exports.createRide = async ({user,pickup, destination, vehicalType}) => {
+    
+    if(!user || !pickup || !destination || !vehicalType){
         throw new Error("Invalid input");
     }
 
-    const fare = await getFare(pickUp,destination);
+    const fare = await getFare(pickup,destination);
 
     const ride = new rideModel({
         user,
-        pickUp,
+        pickup,
         destination,
+        otp:generateOtp(6),
         fare:fare[vehicalType],
     })
 
-    return ride.save();
+    return ride;
 }
 
