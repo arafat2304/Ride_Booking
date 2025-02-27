@@ -27,19 +27,20 @@ const Home = () => {
     const [destinationSuggestions,setDestinationSuggestions]=useState([]);
     const [ activeField, setActiveField ] = useState(null)
 
-    const handlePickupChange = async (e)=>{
-        setPickup(e.target.value);
-        try{
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`,
-                {params:{input:e.target.value},
-                headers:{
-                    Authorization:`Bearer ${localStorage.getItem("token")}`
+    const handlePickupChange = async (e) => {
+        setPickup(e.target.value)
+        console.log(e.target.value)
+        try {
+            const response = await axios.get(`http://localhost:4000/maps/get-suggestions`, {
+                params: { input: e.target.value },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            });
 
-            setPickupSuggestions(response.data);
-        }catch(err){
-
+            })
+            setPickupSuggestions(response.data)
+        } catch(err) {
+            console.log(err)
         }
     }
 
@@ -147,7 +148,7 @@ const Home = () => {
                         <i className="ri-arrow-down-wide-line"></i>
                     </h5>
                     <h4 className="text-2xl font-semibold mb-3">Find a trip</h4>
-                    <form onSubmit={()=>submitHandler(e)}>
+                    <form onSubmit={submitHandler}>
                         <input 
                         className="bg-[#eee] w-full border rounded-lg text-lg px-8 py-3 mb-3"
                          type="text" placeholder="Add a pickup location" 
@@ -164,10 +165,11 @@ const Home = () => {
                         placeholder="Enter your destination"
                         onClick={()=>{
                          setPanelOpen(true);
-                         setActiveField(handleDestinationChange);
+                         setActiveField("destination");
                         }}
                         value={destination}
-                        onChange={(e)=>setDestination(e.target.value)} 
+                        //setDestination(e.target.value)
+                        onChange={handleDestinationChange} 
                         />
                     </form>
                 </div>
