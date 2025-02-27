@@ -147,7 +147,7 @@ const Home = () => {
                         <i className="ri-arrow-down-wide-line"></i>
                     </h5>
                     <h4 className="text-2xl font-semibold mb-3">Find a trip</h4>
-                    <form onSubmit={submitHandler}>
+                    <form onSubmit={()=>submitHandler(e)}>
                         <input 
                         className="bg-[#eee] w-full border rounded-lg text-lg px-8 py-3 mb-3"
                          type="text" placeholder="Add a pickup location" 
@@ -167,7 +167,7 @@ const Home = () => {
                          setActiveField(handleDestinationChange);
                         }}
                         value={destination}
-                        onChange={(e)=>setDestinaton(e.target.value)} 
+                        onChange={(e)=>setDestination(e.target.value)} 
                         />
                     </form>
                 </div>
