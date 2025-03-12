@@ -1,6 +1,6 @@
 import React from "react";
 
-const VehicalPanel = ({setVehicalPanel,setConfirmeRidePanel})=>{
+const VehicalPanel = ({setVehicalPanel,setConfirmeRidePanel,fare})=>{
     return(
         <div className="">
              <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setVehicalPanel(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
@@ -11,7 +11,7 @@ const VehicalPanel = ({setVehicalPanel,setConfirmeRidePanel})=>{
                         <h5 className="font-semibold text-sm">2 minits away</h5>
                         <p className="font-normal text-sm text-gray-600">Affrodable, companct rides</p>
                     </div>
-                    <h1 className="text-lg font-bold">&#8377;193.20</h1>
+                    <h1 className="text-lg font-bold">&#8377;{fare.car}</h1>
                 </div>
 
                 <div onClick={()=>setConfirmeRidePanel(true)} className="flex mb-2 border-2  active:border-black rounded-xl items-center justify-between bg-white w-full p-3">
@@ -21,7 +21,7 @@ const VehicalPanel = ({setVehicalPanel,setConfirmeRidePanel})=>{
                         <h5 className="font-semibold text-sm">3 minits away</h5>
                         <p className="font-normal text-sm text-gray-600">Affrodable, Motorcycle  rides</p>
                     </div>
-                    <h1 className="text-lg font-bold">&#8377;65.00</h1>
+                    <h1 className="text-lg font-bold">&#8377;{fare.motorcycle}</h1>
                 </div>
 
                 <div onClick={()=>setConfirmeRidePanel(true)} className="flex mb-2 border-2  active:border-black rounded-xl items-center justify-between bg-white w-full p-3">
@@ -31,7 +31,7 @@ const VehicalPanel = ({setVehicalPanel,setConfirmeRidePanel})=>{
                         <h5 className="font-semibold text-sm">2 minits away</h5>
                         <p className="font-normal text-sm text-gray-600">Affrodable, Auto rides</p>
                     </div>
-                    <h1 className="text-lg font-bold">&#8377;118.21</h1>
+                    <h1 className="text-lg font-bold">&#8377;{fare.auto}</h1>
                 </div>
         </div>
     )

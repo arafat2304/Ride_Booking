@@ -30,14 +30,16 @@ async function getFare(origin,destination){
     }
 
     const fare={
-        auto: baseFare.auto + ((distanceTime.distance.value/1000) * prKmRate.auto) + ((distanceTime.duration.value/60) * perMinuteRate.auto),
-        car: baseFare.car + ((distanceTime.distance.value/1000) * prKmRate.car) + ((distanceTime.duration.value/60) * perMinuteRate.car),
-        motorcycle:baseFare.motorcycle + ((distanceTime.distance.value/1000) * prKmRate.motorcycle) + ((distanceTime.duration.value/60) * perMinuteRate.motorcycle),
+        auto: Math.round(baseFare.auto + ((distanceTime.distance.value/1000) * prKmRate.auto) + ((distanceTime.duration.value/60) * perMinuteRate.auto)),
+        car: Math.round(baseFare.car + ((distanceTime.distance.value/1000) * prKmRate.car) + ((distanceTime.duration.value/60) * perMinuteRate.car)),
+        motorcycle:Math.round(baseFare.motorcycle + ((distanceTime.distance.value/1000) * prKmRate.motorcycle) + ((distanceTime.duration.value/60) * perMinuteRate.motorcycle)),
     }
     console.log(fare);
     
     return fare;
 }
+
+module.exports.getFare = getFare;
 
 function generateOtp(num){
     const otp = crypto.randomInt(Math.pow(10,num-1),Math.pow(10,num)).toString();

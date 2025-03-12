@@ -25,7 +25,8 @@ const Home = () => {
     const [waitingForDriver,setWaitinForDriver]=useState(false);
     const [pickupSuggestions,setPickupSuggestions]=useState([]);    
     const [destinationSuggestions,setDestinationSuggestions]=useState([]);
-    const [ activeField, setActiveField ] = useState(null)
+    const [ activeField, setActiveField ] = useState(null);
+    const [fare,setFare]=useState({});
 
     const handlePickupChange = async (e) => {
         setPickup(e.target.value)
@@ -47,8 +48,8 @@ const Home = () => {
     const handleDestinationChange = async (e)=>{
         setDestination(e.target.value);
         try{
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`,
-                {params:{input:e.target.value},
+            const response = await axios.get(`http://localhost:4000/maps/get-suggestions`,{
+            params:{input:e.target.value},
                 headers:{
                     Authorization:`Bearer ${localStorage.getItem("token")}`
                 }
@@ -131,6 +132,21 @@ const Home = () => {
                         })
                     }
                     },[waitingForDriver])
+
+    async function findTrip(){
+        setVehicalPanel(true);
+        setPanelOpen(false);
+
+            const response = await axios.get(`http://localhost:4000/rides/getFare`,{
+                params:{pickup,destination},
+                headers:{
+                    Authorization:`Bearer ${localStorage.getItem("token")}`
+                }
+
+            })
+            setFare(response.data);
+            
+    }
         
     return (
         <div className="h-screen relative overflow-hidden">
@@ -140,7 +156,7 @@ const Home = () => {
                  <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" />
             </div>
             <div className="absolute  top-0 w-full flex flex-col justify-end h-screen  ">
-                <div className="h-[30%] bg-white p-5">
+                <div className="h-[30%] bg-white p-6 relative">
                     <h5 ref={panelCloseRef} className="absolute opacity-0 right-6 top-6 text-2xl " onClick={()=>{
                         setPanelOpen(false);
                     }}
@@ -172,9 +188,10 @@ const Home = () => {
                         onChange={handleDestinationChange} 
                         />
                     </form>
+                    <button onClick={findTrip} className="bg-black w-full text-white text-lg py-3 rounded-lg mb-10">Find Trip</button>
                 </div>
 
-                <div ref={panelRef} className=" h-[] bg-white ">
+                <div ref={panelRef} className=" h-0 bg-white ">
                         <LocationSearchPanel 
                         suggestions={activeField === 'pickup' ? pickupSuggestions : destinationSuggestions}
                         setPanelOpen={setPanelOpen} 
@@ -186,7 +203,7 @@ const Home = () => {
             </div>
 
             <div ref={vehicalPanelRef} className="fixed z-10 bottom-0 w-full px-3 py-10 bg-white translate-y-full pt-12">
-               <VehicalPanel setVehicalPanel={setVehicalPanel} setConfirmeRidePanel={setConfirmeRidePanel}/>
+               <VehicalPanel setVehicalPanel={setVehicalPanel} setConfirmeRidePanel={setConfirmeRidePanel} fare={fare}/>
             </div>
 
             <div ref={confirmeRidePanelRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white translate-y-full pt-12">
