@@ -1,37 +1,47 @@
-import React from "react";
+import { useContext } from "react";
+import React  from "react";
+
+import { CaptainDataContext } from "../context/CaptainContext";
 
 const CaptainDeaitails =()=>{
-    return(
-        <div>
-        <div className="flex items-center justify-between p-4">
-            <div className="flex items-center justify-start gap-3">
-            <img className="h-14 w-14 rounded-full" src="https://static.generated.photos/vue-static/face-generator/landing/wall/14.jpg"/>
-            <h4 className="text-lg font-medium">Arafat Malek</h4>
-            </div>
 
-            <div>
-            <h4 className="text-lg font-medium">&#x20B9;193.20</h4>
-            <p className="text-sm text-grey-600">Earned</p>
+    
+    const { captain } = useContext(CaptainDataContext);
+
+    const user = JSON.parse(localStorage.getItem("captain"));
+    console.log(user)
+
+    return (
+        <div>
+            <div className='flex items-center justify-between'>
+                <div className='flex items-center justify-start gap-3'>
+                    <img className='h-10 w-10 rounded-full object-cover' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdlMd7stpWUCmjpfRjUsQ72xSWikidbgaI1w&s" alt="" />
+                    <h4 className='text-lg font-medium capitalize'>{user.fullName.firstName +" "+user.fullName.lastName}</h4>
+                </div>
+                <div>
+                    <h4 className='text-xl font-semibold'>₹295.20</h4>
+                    <p className='text-sm text-gray-600'>Earned</p>
+                </div>
+            </div>
+            <div className='flex p-3 mt-8 bg-gray-100 rounded-xl justify-center gap-5 items-start'>
+                <div className='text-center'>
+                    <i className="text-3xl mb-2 font-thin ri-timer-2-line"></i>
+                    <h5 className='text-lg font-medium'>10.2</h5>
+                    <p className='text-sm text-gray-600'>Hours Online</p>
+                </div>
+                <div className='text-center'>
+                    <i className="text-3xl mb-2 font-thin ri-speed-up-line"></i>
+                    <h5 className='text-lg font-medium'>10.2</h5>
+                    <p className='text-sm text-gray-600'>Hours Online</p>
+                </div>
+                <div className='text-center'>
+                    <i className="text-3xl mb-2 font-thin ri-booklet-line"></i>
+                    <h5 className='text-lg font-medium'>10.2</h5>
+                    <p className='text-sm text-gray-600'>Hours Online</p>
+                </div>
+
             </div>
         </div>
-        <div className="flex gap-7 p-5 bg-gray-100 roundex-xl items-start">
-            <div className="text-center">
-                <i className="text-3xl font-thin mb-2 ri-timer-2-line"></i>
-                <h4 className="text-lg font-medium">10.2</h4>
-                <p className="text-sm text-grey-600">Hours Online</p>
-            </div>
-            <div className="text-center">
-                <i class="text-3xl font-thin mb-2 ri-speed-up-fill"></i>
-                <h4 className="text-lg font-medium">10.2</h4>
-                <p className="text-sm text-grey-600">Hours Online</p>
-            </div>
-            <div className="text-center">
-                <i class="text-3xl font-thin mb-2 ri-booklet-line"></i>
-                <h4 className="text-lg font-medium">10.2</h4>
-                <p className="text-sm text-grey-600">Hours Online</p>
-            </div>
-        </div>
-    </div>
     )
 }
 

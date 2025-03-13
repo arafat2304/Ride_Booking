@@ -39,10 +39,11 @@ export default function CaptainSignup() {
   }); 
 
   const response = await axios.post("http://localhost:4000/captains/register",captainData);
- console.log(response)
+ console.log(response.data)
   if(response.status==201){
     const data = response.data;
     setCaptain(data.captain);
+    localStorage.setItem("captain", JSON.stringify(response.data.captain));
     localStorage.setItem("token",data.token)
     navigate("/captain-home");
   }

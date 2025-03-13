@@ -1,13 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import CaptainDeaitails from "../components/CaptainDetails";
 import RidePopUp from "../components/RidePopUp";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
+import { CaptainDataContext } from "../context/CaptainContext";
 
 
 function CaptainHome() {
+
+
 const [ridePopUpPanel,setRidePopUpPanel]=useState(true);
 const ridePopUpPanelRef=useRef(null);
 const [confirmRidePopUpPanel,setConfirmRidePopUpPanel]=useState(false);
@@ -50,7 +53,7 @@ useGSAP(function(){
          </div>
 
         <div className="h-2/5 p-4">
-          <CaptainDeaitails/>
+          <CaptainDeaitails />
         </div>
 
         <div ref={ridePopUpPanelRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white  pt-12">

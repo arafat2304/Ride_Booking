@@ -11,7 +11,8 @@ export default function CaptainLogin() {
 
   let [email, setEmail] = React.useState("");
   let [password, setPassword] = React.useState("");
-  const {captain,setCaptain}=useContext(CaptainDataContext);
+  const {captain,setCaptain,updateCaptain}=useContext(CaptainDataContext);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +27,8 @@ console.log(captain)
     console.log(response)
     if(response.status==200){
       const data = response.data;
-      setCaptain(data.captain);
-      localStorage.setItem("token",data.token)
+      updateCaptain(data.captain);
+      localStorage.setItem("token",data.token);
       navigate("/captain-home")
     }
     

@@ -6,7 +6,6 @@ import { Route,Routes } from 'react-router-dom';
 import CaptainSignup from './pages/CaptainSignup';
 import UserLogin from './pages/UserLogin';
 import UserSignup from './pages/UserSignup';
-import { UserDataContext } from './context/userContext';
 import UserProtecterWrapper from './pages/USerProtecterWrapper';
 import UserLogout from './pages/UserLogout';
 import CaptainHome from './pages/CaptainHome';
@@ -17,7 +16,7 @@ import CaptainRiding from './pages/CaptainRiding';
 
 
 const App = () => {
-  const value = useContext(UserDataContext);
+
   return (
     <div>
       

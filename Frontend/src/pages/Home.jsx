@@ -27,6 +27,7 @@ const Home = () => {
     const [destinationSuggestions,setDestinationSuggestions]=useState([]);
     const [ activeField, setActiveField ] = useState(null);
     const [fare,setFare]=useState({});
+    const [vehicalType,setVehicalType]=useState(null);
 
     const handlePickupChange = async (e) => {
         setPickup(e.target.value)
@@ -147,6 +148,21 @@ const Home = () => {
             setFare(response.data);
             
     }
+
+    async function createRide(){
+
+        const response = await axios.post(`http://localhost:4000/rides/create`,{
+            pickup,
+            destination,
+            vehicalType
+        },{
+            headers:{
+                Authorization:`Bearer ${localStorage.getItem("token")}`
+            }
+        })
+
+        console.log(response.data);
+    }
         
     return (
         <div className="h-screen relative overflow-hidden">
@@ -203,15 +219,18 @@ const Home = () => {
             </div>
 
             <div ref={vehicalPanelRef} className="fixed z-10 bottom-0 w-full px-3 py-10 bg-white translate-y-full pt-12">
-               <VehicalPanel setVehicalPanel={setVehicalPanel} setConfirmeRidePanel={setConfirmeRidePanel} fare={fare}/>
+               <VehicalPanel  setVehicalType={setVehicalType}
+               setVehicalPanel={setVehicalPanel} setConfirmeRidePanel={setConfirmeRidePanel} fare={fare}/>
             </div>
 
             <div ref={confirmeRidePanelRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white translate-y-full pt-12">
-               <ConfirmRide setConfirmeRidePanel={setConfirmeRidePanel} setVehicalFound={setVehicalFound}/>
+               <ConfirmRide pickup={pickup} destination={destination} fare={fare} vehicalType={vehicalType}
+               createRide={createRide} setConfirmeRidePanel={setConfirmeRidePanel} setVehicalFound={setVehicalFound}/>
             </div>
 
             <div ref={vehicalFoundRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white translate-y-full pt-12">
-             <LookingForDriver setVehicalFound={setVehicalFound}/>
+             <LookingForDriver pickup={pickup} destination={destination} fare={fare} vehicalType={vehicalType}
+             setVehicalFound={setVehicalFound}/>
             </div>
 
             <div ref={waitingForDriverRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white  pt-12">

@@ -8,7 +8,7 @@ import CaptainContext from './context/CaptainContext.jsx';
 
 
 createRoot(document.getElementById('root')).render(
-<StrictMode>
+
   <CaptainContext>
     <UserContext>
      <BrowserRouter>
@@ -16,5 +16,5 @@ createRoot(document.getElementById('root')).render(
      </BrowserRouter>
     </UserContext>
   </CaptainContext>
-</StrictMode>
+
 )
