@@ -3,7 +3,7 @@ import React from "react";
 const LookingForDriver = ({setVehicalFound,pickup,destination,vehicalType,fare})=>{
     return(
         <div className="w-full">
-        <h5 className="absolute p-5  top-0 w-[93%] text-center" onClick={()=>setVehicalFound(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
+        <h5 className="absolute top-0 w-[93%] text-center" onClick={()=>setVehicalFound(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
         <h3 className="text-2xl font-semibold">Looking For Driver</h3>
 
         <div className=" gap-2 flex justify-between items-center flex-col"> 

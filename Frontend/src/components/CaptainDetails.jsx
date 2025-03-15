@@ -9,7 +9,6 @@ const CaptainDeaitails =()=>{
     const { captain } = useContext(CaptainDataContext);
 
     const user = JSON.parse(localStorage.getItem("captain"));
-    console.log(user)
 
     return (
         <div>

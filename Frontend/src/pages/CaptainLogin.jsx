@@ -11,7 +11,7 @@ export default function CaptainLogin() {
 
   let [email, setEmail] = React.useState("");
   let [password, setPassword] = React.useState("");
-  const {captain,setCaptain,updateCaptain}=useContext(CaptainDataContext);
+  const value =useContext(CaptainDataContext);
 
 
   const handleSubmit = async (e) => {
@@ -21,14 +21,14 @@ export default function CaptainLogin() {
       email,
       password,
     });
-console.log(captain)
     const response = await axios.post("http://localhost:4000/captains/login",captain);
 
     console.log(response)
     if(response.status==200){
       const data = response.data;
-      updateCaptain(data.captain);
+      value.setCaptain(data.captain);
       localStorage.setItem("token",data.token);
+      localStorage.setItem("_id",data.captain._id);
       navigate("/captain-home")
     }
     

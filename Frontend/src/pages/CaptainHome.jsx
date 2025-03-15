@@ -5,16 +5,39 @@ import RidePopUp from "../components/RidePopUp";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
+import { useEffect } from "react";
+import { SocketContext } from "../context/SocketContext";
 import { CaptainDataContext } from "../context/CaptainContext";
-
 
 function CaptainHome() {
 
+const {captain}=useContext(CaptainDataContext);
+const {socket}=useContext(SocketContext);
 
 const [ridePopUpPanel,setRidePopUpPanel]=useState(true);
 const ridePopUpPanelRef=useRef(null);
 const [confirmRidePopUpPanel,setConfirmRidePopUpPanel]=useState(false);
 const confirmRidePopUpPanelRef=useRef(null);
+
+useEffect(()=>{
+    
+socket.emit('join',{userType:"captain",userId:localStorage.getItem("_id")});
+
+const updateLocation =()=>{
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(position=>
+            socket.emit('update-location-captain',{
+                userId:localStorage.setItem("_id"),
+                latitute:position.coords.latitude,
+                longitute:position.coords.longitude,
+            })
+        )
+    }
+}
+
+    const locationInterval = setInterval(updateLocation,10000);
+    return () => clearInterval(locationInterval);
+},)
 
 useGSAP(function(){
     if(ridePopUpPanel){

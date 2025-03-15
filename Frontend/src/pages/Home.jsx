@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import "remixicon/fonts/remixicon.css";
@@ -8,6 +8,8 @@ import ConfirmRide from "../components/ConfirmRide";
 import LookingForDriver from "../components/LookingForDriver";
 import WaitingForDriver from "../components/WaitingForDriver";
 import axios from "axios";
+import { SocketContext } from "../context/SocketContext";
+import {UserDataContext} from "../context/UserContext";
 
 const Home = () => {
     const [pickup,setPickup] = useState("");
@@ -28,6 +30,12 @@ const Home = () => {
     const [ activeField, setActiveField ] = useState(null);
     const [fare,setFare]=useState({});
     const [vehicalType,setVehicalType]=useState(null);
+    const {socket}=useContext(SocketContext);
+    const {user}=useContext(UserDataContext);
+
+    useEffect(()=>{
+        socket.emit("join",{userType:"user",userId:user._id})
+    })
 
     const handlePickupChange = async (e) => {
         setPickup(e.target.value)
@@ -101,11 +109,12 @@ const Home = () => {
         useGSAP(function(){
             if(confirmeRidePanel){
                 gsap.to(confirmeRidePanelRef.current,{
-                    transform:"translateY(0)"
+                    transform:"translateY(0)",
+                    
                 })
             }else{
                 gsap.to(confirmeRidePanelRef.current,{
-                    transform:"translateY(100%)"
+                    transform:"translateY(100%)",
                 })
             }
             },[confirmeRidePanel])
@@ -228,7 +237,7 @@ const Home = () => {
                createRide={createRide} setConfirmeRidePanel={setConfirmeRidePanel} setVehicalFound={setVehicalFound}/>
             </div>
 
-            <div ref={vehicalFoundRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white translate-y-full pt-12">
+            <div ref={vehicalFoundRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white translate-y-full ">
              <LookingForDriver pickup={pickup} destination={destination} fare={fare} vehicalType={vehicalType}
              setVehicalFound={setVehicalFound}/>
             </div>

@@ -20,6 +20,7 @@ const SocketProvider = ({children}) => {
     },[]);
 
     const sendMessage = (eventName , message) => {
+        console.log(`Sending message: ${message} to ${eventName}`); 
         socket.emit(eventName, message);
     }
 
@@ -28,10 +29,10 @@ const SocketProvider = ({children}) => {
     }
 
     return (
-        <SocketContext.Provider value={{sendMessage, receiveMessage}}>
+        <SocketContext.Provider value={{socket}}>
             {children}
         </SocketContext.Provider>
     );
 }
 
-export default SocketProvider
+export default SocketProvider;
