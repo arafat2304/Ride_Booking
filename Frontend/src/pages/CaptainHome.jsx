@@ -20,23 +20,33 @@ const [confirmRidePopUpPanel,setConfirmRidePopUpPanel]=useState(false);
 const confirmRidePopUpPanelRef=useRef(null);
 
 useEffect(()=>{
-    
+    console.log(localStorage.getItem("_id"))
 socket.emit('join',{userType:"captain",userId:localStorage.getItem("_id")});
 
-const updateLocation =()=>{
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(position=>
-            socket.emit('update-location-captain',{
-                userId:localStorage.setItem("_id"),
-                latitute:position.coords.latitude,
-                longitute:position.coords.longitude,
-            })
-        )
+const updateLocation = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                
+                    socket.emit("update-location-captain", {
+                    userId: localStorage.getItem("_id"),
+                    location: {
+                        lat: position.coords.latitude, 
+                        lng: position.coords.longitude,
+                    },
+                });
+            },
+            (error) => {
+                console.error("Error fetching location:", error);
+            }
+        );
+    } else {
+        console.error("Geolocation is not supported by this browser.");
     }
-}
-
+};
     const locationInterval = setInterval(updateLocation,10000);
-    return () => clearInterval(locationInterval);
+    updateLocation();
+    // return () => clearInterval(locationInterval);
 },)
 
 useGSAP(function(){

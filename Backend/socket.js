@@ -31,7 +31,11 @@ function initializeSocket(server) {
             if(!location || !location.ltd || !location.lng){
                 return socket.emit('error',{message:"incalid location data"});
             }
-            await captainModel.findByIdAndUpdate(userId,{location});
+            await captainModel.findByIdAndUpdate(userId,{
+                location:{
+                    ltd:location.ltd,
+                    lng:location.lng,
+            }});
         })
 
         socket.on("disconnect", () => {

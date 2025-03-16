@@ -31,7 +31,7 @@ const Home = () => {
     const [fare,setFare]=useState({});
     const [vehicalType,setVehicalType]=useState(null);
     const {socket}=useContext(SocketContext);
-    const {user}=useContext(UserDataContext);
+    const {user,}=useContext(UserDataContext);
 
     useEffect(()=>{
         socket.emit("join",{userType:"user",userId:user._id})

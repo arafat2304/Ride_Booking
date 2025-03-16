@@ -23,12 +23,15 @@ export default function CaptainLogin() {
     });
     const response = await axios.post("http://localhost:4000/captains/login",captain);
 
-    console.log(response)
+    
     if(response.status==200){
       const data = response.data;
-      value.setCaptain(data.captain);
+      console.log(data)
+      localStorage.setItem("captain", JSON.stringify(data.captain));
       localStorage.setItem("token",data.token);
       localStorage.setItem("_id",data.captain._id);
+      
+      console.log(localStorage.getItem("captain"))
       navigate("/captain-home")
     }
     

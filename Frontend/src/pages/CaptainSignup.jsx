@@ -45,7 +45,7 @@ export default function CaptainSignup() {
     setCaptain(data.captain);
     localStorage.setItem("token",data.token);
     localStorage.setItem("_id",data.captain._id);
-    localStorage.setItem("token",data.token)
+    localStorage.setItem("captain",data.captain);
     navigate("/captain-home");
   }
  
