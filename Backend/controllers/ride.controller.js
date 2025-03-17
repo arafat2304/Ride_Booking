@@ -11,13 +11,12 @@ module.exports.createRide = async (req, res) => {
     
     try{
         const ride = await rideService.createRide({user:req.user._id,pickup,destination,vehicalType});
+        ride.save();
         res.status(201).json(ride);
 
         const pickupCoordinate = await mapService.getAddressCoordinate(pickup);
-        console.log(pickupCoordinate);
-
-        const captainInRadius = await mapService.getCaptainsInTheRadius(pickupCoordinate.lng,pickupCoordinate.lat, 2);
-        console.log(captainInRadius);
+console.log(pickupCoordinate)
+        const captainInRadius = await mapService.getCaptainsInTheRadius(pickupCoordinate.lat,pickupCoordinate.lng,10);
     }catch(err){
         // res.status(500).json({messages:err.message})
         console.log(err.message)

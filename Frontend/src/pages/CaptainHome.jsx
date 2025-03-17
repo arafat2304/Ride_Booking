@@ -20,19 +20,21 @@ const [confirmRidePopUpPanel,setConfirmRidePopUpPanel]=useState(false);
 const confirmRidePopUpPanelRef=useRef(null);
 
 useEffect(()=>{
-    console.log(localStorage.getItem("_id"))
+
 socket.emit('join',{userType:"captain",userId:localStorage.getItem("_id")});
 
 const updateLocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                
+                console.log("Updating location:", position.coords.latitude, position.coords.longitude);
                     socket.emit("update-location-captain", {
                     userId: localStorage.getItem("_id"),
                     location: {
-                        lat: position.coords.latitude, 
-                        lng: position.coords.longitude,
+                        
+                           ltd: position.coords.latitude, 
+                        lng:position.coords.longitude,
+                        
                     },
                 });
             },
@@ -46,7 +48,7 @@ const updateLocation = () => {
 };
     const locationInterval = setInterval(updateLocation,10000);
     updateLocation();
-    // return () => clearInterval(locationInterval);
+    return () => clearInterval(locationInterval);
 },)
 
 useGSAP(function(){

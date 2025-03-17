@@ -26,16 +26,18 @@ function initializeSocket(server) {
         })
 
         socket.on('update-location-captain',async(data)=>{
+            console.log(data)
             const {userId,location}= data;
-
-            if(!location || !location.ltd || !location.lng){
-                return socket.emit('error',{message:"incalid location data"});
+            // if(!location || !location.ltd || !location.lng){
+            //     return socket.emit('error',{message:"incalid location data"});
+            try {
+                await captainModel.findByIdAndUpdate(userId, {location});
+        
+                console.log("Location updated successfully");
+            } catch (error) {
+                console.error("Error updating location:", error);
+                socket.emit('error', { message: "Database error" });
             }
-            await captainModel.findByIdAndUpdate(userId,{
-                location:{
-                    ltd:location.ltd,
-                    lng:location.lng,
-            }});
         })
 
         socket.on("disconnect", () => {
