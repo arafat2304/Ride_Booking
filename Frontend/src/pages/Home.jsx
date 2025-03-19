@@ -37,6 +37,11 @@ const Home = () => {
         socket.emit("join",{userType:"user",userId:user._id})
     })
 
+    socket.on('ride-confirmed',ride=>{
+        setVehicalFound(false);
+        setWaitinForDriver(true);
+    })
+
     const handlePickupChange = async (e) => {
         setPickup(e.target.value)
         console.log(e.target.value)

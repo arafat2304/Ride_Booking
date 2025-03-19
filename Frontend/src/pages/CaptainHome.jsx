@@ -8,16 +8,18 @@ import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 import { useEffect } from "react";
 import { SocketContext } from "../context/SocketContext";
 import { CaptainDataContext } from "../context/CaptainContext";
+import axios from "axios";
 
 function CaptainHome() {
 
 const {captain}=useContext(CaptainDataContext);
 const {socket}=useContext(SocketContext);
 
-const [ridePopUpPanel,setRidePopUpPanel]=useState(true);
+const [ridePopUpPanel,setRidePopUpPanel]=useState(false);
 const ridePopUpPanelRef=useRef(null);
 const [confirmRidePopUpPanel,setConfirmRidePopUpPanel]=useState(false);
 const confirmRidePopUpPanelRef=useRef(null);
+const [ride,setRide]=useState(null);
 
 useEffect(()=>{
 
@@ -31,10 +33,8 @@ const updateLocation = () => {
                     socket.emit("update-location-captain", {
                     userId: localStorage.getItem("_id"),
                     location: {
-                        
-                           ltd: position.coords.latitude, 
+                        ltd: position.coords.latitude, 
                         lng:position.coords.longitude,
-                        
                     },
                 });
             },
@@ -49,7 +49,52 @@ const updateLocation = () => {
     const locationInterval = setInterval(updateLocation,10000);
     updateLocation();
     return () => clearInterval(locationInterval);
-},)
+})
+
+socket.on('new-ride',(data)=>{
+    setRidePopUpPanel(true);
+    setRide(data);
+})
+
+async function confirmRide() { // Ensure ride is passed as an argument
+    try {
+        const captainData = localStorage.getItem("captain");
+        if (!captainData) {
+            console.error("No captain data found in localStorage");
+            return;
+        }
+        
+        const captain = JSON.parse(captainData);
+        if (!captain?._id) {
+            console.error("Invalid captain data");
+            return;
+        }
+
+        if (!ride?._id) {
+            console.error("Invalid ride data");
+            return;
+        }
+
+        console.log("Captain:", captain);
+        console.log("Ride ID:", ride._id);
+
+        const response = await axios.post(`http://localhost:4000/rides/confirm`, {
+
+            rideId: ride._id,
+            captain: captain,
+
+
+        }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        console.log("Ride confirmed:", response.data);
+    } catch (error) {
+        console.error("Error confirming ride:", error.response?.data || error.message);
+    }
+}
+
 
 useGSAP(function(){
     if(ridePopUpPanel){
@@ -92,7 +137,8 @@ useGSAP(function(){
         </div>
 
         <div ref={ridePopUpPanelRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white  pt-12">
-            <RidePopUp setRidePopUpPanel={setRidePopUpPanel} setConfirmRidePopUpPanel={setConfirmRidePopUpPanel}/>
+            <RidePopUp ride={ride} confirmRide={confirmRide}
+            setRidePopUpPanel={setRidePopUpPanel} setConfirmRidePopUpPanel={setConfirmRidePopUpPanel}/>
         </div>
 
         <div ref={confirmRidePopUpPanelRef} className="fixed z-10 bottom-0 translate-y-full h-screen w-full px-3 py-6 bg-white  pt-12">
