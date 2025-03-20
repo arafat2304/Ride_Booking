@@ -6,7 +6,6 @@ module.exports.getAddressCoordinate = async (address) => {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
     try{
         const response = await axios.get(url);
-        console.log(response);
         if(response.data.status === "OK"){
             const location= response.data.results[0].geometry.location;
             return{
@@ -80,7 +79,7 @@ module.exports.getCaptainsInTheRadius = async (ltd,lng, radius) => {
     // });
 
     const captains = await captainModel.find({});
-console.log(captains)
+
     return captains;
 
        

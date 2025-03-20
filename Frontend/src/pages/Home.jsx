@@ -32,19 +32,21 @@ const Home = () => {
     const [vehicalType,setVehicalType]=useState(null);
     const {socket}=useContext(SocketContext);
     const {user,}=useContext(UserDataContext);
+    const [ride,setRide]=useState(null);
 
     useEffect(()=>{
         socket.emit("join",{userType:"user",userId:user._id})
     })
 
     socket.on('ride-confirmed',ride=>{
+        console.log(ride)
         setVehicalFound(false);
         setWaitinForDriver(true);
+        setRide(ride);
     })
 
     const handlePickupChange = async (e) => {
         setPickup(e.target.value)
-        console.log(e.target.value)
         try {
             const response = await axios.get(`http://localhost:4000/maps/get-suggestions`, {
                 params: { input: e.target.value },
@@ -248,7 +250,7 @@ const Home = () => {
             </div>
 
             <div ref={waitingForDriverRef} className="fixed z-10 bottom-0 w-full px-3 py-6 bg-white  pt-12">
-             <WaitingForDriver setWaitinForDriver={setWaitinForDriver}/>
+             <WaitingForDriver setWaitinForDriver={setWaitinForDriver} ride={ride}/>
             </div>
         </div>
     

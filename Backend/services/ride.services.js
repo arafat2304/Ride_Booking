@@ -9,7 +9,7 @@ async function getFare(origin,destination){
     }
     // logic to calculate fare
     const distanceTime = await getDistanceTime(origin,destination);
-    console.log(distanceTime);
+    
 
     const baseFare={
         auto:30,
@@ -34,7 +34,7 @@ async function getFare(origin,destination){
         car: Math.round(baseFare.car + ((distanceTime.distance.value/1000) * prKmRate.car) + ((distanceTime.duration.value/60) * perMinuteRate.car)),
         motorcycle:Math.round(baseFare.motorcycle + ((distanceTime.distance.value/1000) * prKmRate.motorcycle) + ((distanceTime.duration.value/60) * perMinuteRate.motorcycle)),
     }
-    console.log(fare);
+    
     
     return fare;
 }
@@ -70,9 +70,9 @@ module.exports.confirmRide = async({rideId,captain})=>{
         throw new Error("Invalid rideId");
     }
 
-    console.log(rideId,captain)
+    console.log("this is "+captain)
     const response=await rideModel.findOneAndUpdate({_id:rideId},{status:"confirmed",captain:captain._id});
-    const ride = await rideModel.findOne({_id:rideId}).populate("user");
+    const ride = await rideModel.findOne({_id:rideId}).populate("user").populate("captain").select("+otp");
 
     if(!ride){
         throw new Error("Ride not found");
