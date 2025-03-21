@@ -72,3 +72,23 @@ module.exports.confirmRide = async (req,res)=>{
         return res.status(500).json({messages:err.message})
     }
 }
+
+
+module.exports.startRide = async (req,res)=>{
+    if(!validationResult(req).isEmpty()){
+        return res.status(400).json({messages:validationResult(req).array()});
+    }
+
+    const {rideId,otp} = req.query;
+
+    try{
+        const ride = await rideService.startRide({rideId,otp});
+        sendMessageToSocketId(ride.user.socketId,{
+            event:"ride-started",
+            data:ride
+        });
+        return res.status(200).json(ride);
+    }catch(err){
+        return res.status(500).json({messages:err.message})
+    }
+}

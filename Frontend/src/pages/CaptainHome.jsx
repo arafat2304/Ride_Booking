@@ -142,7 +142,8 @@ useGSAP(function(){
         </div>
 
         <div ref={confirmRidePopUpPanelRef} className="fixed z-10 bottom-0 translate-y-full h-screen w-full px-3 py-6 bg-white  pt-12">
-            <ConfirmRidePopUp setConfirmRidePopUpPanel={setConfirmRidePopUpPanel} setRidePopUpPanel={setRidePopUpPanel}/>
+            <ConfirmRidePopUp ride={ride} 
+            setConfirmRidePopUpPanel={setConfirmRidePopUpPanel} setRidePopUpPanel={setRidePopUpPanel}/>
         </div>
 
     </div>
