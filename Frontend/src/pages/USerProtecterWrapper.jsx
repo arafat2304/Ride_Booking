@@ -5,7 +5,7 @@ import { UserDataContext } from "../context/userContext";
 
 const UserProtecterWrapper = ({children})=>{
     const navigate = useNavigate()
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("userToken");
 
     const {user,setUser}=useContext(UserDataContext);
    
@@ -13,7 +13,7 @@ const UserProtecterWrapper = ({children})=>{
         if(!token){
             navigate("/login")
         }
-    })
+    
 
     axios.get("http://localhost:4000/users/getProfile",{
         headers:{
@@ -29,6 +29,7 @@ const UserProtecterWrapper = ({children})=>{
         console.log(err);
         navigate("/login");
     })
+})
 
     return(
         <>

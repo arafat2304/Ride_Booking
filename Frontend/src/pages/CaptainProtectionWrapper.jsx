@@ -14,7 +14,7 @@ const CaptainProtectionWeapper = ({children})=>{
         if(!token){
             navigate("/captain-login");
         }
-       },[token])
+       
 
        axios.get("http://localhost:4000/captains/profile",{
         headers:{
@@ -30,6 +30,7 @@ const CaptainProtectionWeapper = ({children})=>{
         localStorage.removeItem("token");
         navigate("/captain-login");
        })
+    });
 
        return(
         <>

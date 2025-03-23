@@ -14,7 +14,7 @@ function CaptainHome() {
 
 const {captain}=useContext(CaptainDataContext);
 const {socket}=useContext(SocketContext);
-
+console.log(localStorage.getItem("token"));
 const [ridePopUpPanel,setRidePopUpPanel]=useState(false);
 const ridePopUpPanelRef=useRef(null);
 const [confirmRidePopUpPanel,setConfirmRidePopUpPanel]=useState(false);
@@ -24,6 +24,9 @@ const [ride,setRide]=useState(null);
 useEffect(()=>{
 
 socket.emit('join',{userType:"captain",userId:localStorage.getItem("_id")});
+
+console.log(socket._id);
+console.log(socket);
 
 const updateLocation = () => {
     if (navigator.geolocation) {
@@ -52,6 +55,7 @@ const updateLocation = () => {
 })
 
 socket.on('new-ride',(data)=>{
+    console.log("New ride:",data);
     setRidePopUpPanel(true);
     setRide(data);
 })

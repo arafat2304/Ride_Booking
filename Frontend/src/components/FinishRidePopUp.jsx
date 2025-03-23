@@ -1,7 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 const FinsihRidePopUp = ({setFinishRidePanel,rideData}) =>{
+
+    const navigator = useNavigate();
+    console.log(localStorage.getItem('captainToken'));
+
+    const endRide = async () =>{
+
+        const response = await axios.post("http://localhost:4000/rides/end-ride",{
+                rideId:rideData._id
+        },{
+            headers:{
+                Authorization:`Bearer ${localStorage.getItem('captainToken')}`
+            }
+        })
+
+        if(response.status===200){
+            setFinishRidePanel(false);
+            navigator("/captain-home");
+
+        }
+    }
     return(
         <div className="w-full">
         <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setFinishRidePanel(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
@@ -40,7 +62,7 @@ const FinsihRidePopUp = ({setFinishRidePanel,rideData}) =>{
                </div>
            </div>
           <div className="w-full mt-7">
-            <Link to={"/captain-home"} className="w-full  flex justify-center bg-green-600 p-3 font-semibold text-white rounded-lg">Finish Ride</Link>
+            <button onClick={endRide} className="w-full  flex justify-center bg-green-600 p-3 font-semibold text-white rounded-lg">Finish Ride</button>
           </div>
         </div>
        </div>

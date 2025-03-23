@@ -70,8 +70,6 @@ module.exports.confirmRide = async({rideId,captain})=>{
     if(!rideId){
         throw new Error("Invalid rideId");
     }
-
-    console.log("this is "+captain)
     const response=await rideModel.findOneAndUpdate({_id:rideId},{status:"accepted",captain:captain._id});
     const ride = await rideModel.findOne({_id:rideId}).populate("user").populate("captain").select("+otp");
 
@@ -108,5 +106,25 @@ module.exports.startRide = async({rideId,otp,captain})=>{
         data:ride
     })
 
+    return ride;
+}
+
+module.exports.endRide = async ({rideId,captain})=>{
+    if(!rideId){
+        throw new Error("Invalid rideId");
+    }
+
+    const ride = await rideModel.findOne({_id:rideId,captain:captain._id}).populate("user").populate("captain").select("+otp");
+
+    if(!ride){
+        throw new Error("Ride not found");
+    }
+
+    if(ride.status!=="ongoing"){
+        throw new Error("Ride is not ongoing");
+    }
+
+    await rideModel.findOneAndUpdate({_id:rideId},{status:"completed"});
+    
     return ride;
 }

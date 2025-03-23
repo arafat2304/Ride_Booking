@@ -37,15 +37,19 @@ const Home = () => {
 
     const navigate=useNavigate();
 
-    useEffect(()=>{
-        socket.emit("join",{userType:"user",userId:user._id})
-    })
+    const userId = localStorage.getItem("user")
+    useEffect(() => {
+        socket.emit("join", { userType: "user", userId })
+    }, [ user ])
 
-    socket.on('ride-confirmed',ride=>{
-        console.log(ride)
-        setVehicalFound(false);
-        setWaitinForDriver(true);
-        setRide(ride);
+    
+
+    socket.on('ride-confirmed', ride => {
+
+
+        setVehicalFound(false)
+        setWaitinForDriver(true)
+        setRide(ride)
     })
 
     socket.on('ride-started',ride=>{
@@ -181,7 +185,7 @@ const Home = () => {
             vehicalType
         },{
             headers:{
-                Authorization:`Bearer ${localStorage.getItem("token")}`
+                Authorization:`Bearer ${localStorage.getItem("userToken")}`
             }
         })
 

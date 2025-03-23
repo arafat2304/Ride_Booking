@@ -50,12 +50,10 @@ module.exports.getSuggestions = async (input) => {
     if(!input){
         throw new Error("query is required");
     }
-    console.log("hii")
     const apiKey = process.env.GOOGLE_MAP_API_KEY;
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}`;
     try{
         const response = await axios.get(url);
-        console.log(response)
         if(response.data.status === "OK"){
             return response.data.predictions.map(prediction => prediction.description).filter(value => value);
         }else{

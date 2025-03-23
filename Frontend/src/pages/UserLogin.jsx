@@ -26,7 +26,9 @@ export default function UserLogin() {
     if(response.status === 200){
       const data = response.data
       setUser(data.user);
-      localStorage.setItem("token",data.token);
+      console.log(data)
+      localStorage.setItem("userToken",data.token);
+      localStorage.setItem("user",data.user._id);
       navigate("/home")
     }
     setEmail("");
