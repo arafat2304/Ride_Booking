@@ -11,6 +11,7 @@ import axios from "axios";
 import { SocketContext } from "../context/SocketContext";
 import {UserDataContext} from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import LiveTracking from "../components/LiveTracking";
 
 const Home = () => {
     const [pickup,setPickup] = useState("");
@@ -45,8 +46,6 @@ const Home = () => {
     
 
     socket.on('ride-confirmed', ride => {
-
-
         setVehicalFound(false)
         setWaitinForDriver(true)
         setRide(ride)
@@ -55,6 +54,10 @@ const Home = () => {
     socket.on('ride-started',ride=>{
         setWaitinForDriver(false);
         navigate("/riding",{state:{ride}})
+    });
+
+    socket.on('ride-ended',ride=>{
+        navigate("/home");
     })
 
     const handlePickupChange = async (e) => {
@@ -197,7 +200,8 @@ const Home = () => {
            
     `       <div className="absolute top-0 h-screen w-screen ">
                  <img className="w-16 absolute left-5 top-5" src="https://www.pngall.com/wp-content/uploads/4/Uber-Logo-PNG-Free-Image.png" alt="" />
-                 <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" />
+                 {/* <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" /> */}
+                <LiveTracking/>
             </div>
             <div className="absolute  top-0 w-full flex flex-col justify-end h-screen  ">
                 <div className="h-[30%] bg-white p-6 relative">
