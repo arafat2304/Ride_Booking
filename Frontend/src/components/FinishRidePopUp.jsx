@@ -34,7 +34,7 @@ const FinsihRidePopUp = ({setFinishRidePanel,rideData}) =>{
                 <img className="h-12 w-12 rounded-full object-cover" src="https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-6.jpg" alt="" />
                 <h5 className="text-lg font-medium">{rideData?.user.fullName.firstName}</h5>
             </div>
-            <h5 className="text-lg font-semibold">2.3KM</h5>
+            <h5 className="text-lg font-semibold">{rideData.distance}</h5>
         </div>
 
         <div className=" gap-2 flex justify-between items-center flex-col"> 

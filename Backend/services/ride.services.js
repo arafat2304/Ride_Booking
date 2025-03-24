@@ -10,7 +10,7 @@ async function getFare(origin,destination){
     }
     // logic to calculate fare
     const distanceTime = await getDistanceTime(origin,destination);
-    
+    console.log(distanceTime)
 
     const baseFare={
         auto:30,
@@ -34,9 +34,11 @@ async function getFare(origin,destination){
         auto: Math.round(baseFare.auto + ((distanceTime.distance.value/1000) * prKmRate.auto) + ((distanceTime.duration.value/60) * perMinuteRate.auto)),
         car: Math.round(baseFare.car + ((distanceTime.distance.value/1000) * prKmRate.car) + ((distanceTime.duration.value/60) * perMinuteRate.car)),
         motorcycle:Math.round(baseFare.motorcycle + ((distanceTime.distance.value/1000) * prKmRate.motorcycle) + ((distanceTime.duration.value/60) * perMinuteRate.motorcycle)),
+        motorcycleTime:Math.round((distanceTime.duration.value)/60),
+        autoTime:Math.round(((distanceTime.duration.value)/60)/1.5),
+        carTime:Math.round(((distanceTime.duration.value)/60)/2),
     }
-    
-    
+
     return fare;
 }
 

@@ -26,9 +26,6 @@ useEffect(()=>{
 
 socket.emit('join',{userType:"captain",userId:localStorage.getItem("_id")});
 
-console.log(socket._id);
-console.log(socket);
-
 const updateLocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(

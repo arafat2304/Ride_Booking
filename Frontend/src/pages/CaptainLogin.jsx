@@ -7,10 +7,13 @@ import UserContext from "../context/userContext";
 
 export default function CaptainLogin() {
 
-  const navigate=useNavigate();
+  
 
   let [email, setEmail] = React.useState("");
   let [password, setPassword] = React.useState("");
+  let [error, setError] = React.useState("");
+  const navigate=useNavigate();
+  
   const value =useContext(CaptainDataContext);
 
 
@@ -21,6 +24,8 @@ export default function CaptainLogin() {
       email,
       password,
     });
+   try{
+
     const response = await axios.post("http://localhost:4000/captains/login",captain);
 
     
@@ -34,7 +39,12 @@ export default function CaptainLogin() {
       console.log(localStorage.getItem("token"));
       navigate("/captain-home")
     }
-    
+
+   }catch(err){
+    if(err.response.status === 404){
+      setError(err.response.data.errors);
+   }
+  }
     setEmail("");
     setPassword("");
 
@@ -59,6 +69,8 @@ export default function CaptainLogin() {
               type="password" 
               placeholder="Enter password" 
               required/>
+
+              <p className="text-lg font-medium h-50 w-full flex justify-center text-red-500 mb-5">{error}</p>
       
               <button className="bg-[#111] text-white font-semibold px-4 py-2 rounded w-full text-lg placeholder:text-base mb-4">Login</button>
             <p className="text-center">Join a fleet? <Link to="/captain-signup" className="text-blue-600">Register as captain</Link></p>

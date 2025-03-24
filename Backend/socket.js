@@ -49,7 +49,7 @@ function initializeSocket(server) {
 }
 
 function sendMessageToSocketId(socketId, messageObject) {
-    console.log("Sending message to socket:", socketId, messageObject);
+    // console.log("Sending message to socket:", socketId, messageObject);
     if (io) {
         io.to(socketId).emit(messageObject.event,messageObject.data);
     }

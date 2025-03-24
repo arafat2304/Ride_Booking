@@ -8,6 +8,8 @@ export default function UserLogin() {
   let [email, setEmail] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [userData, setUserData] = React.useState({});
+  let [error, setError] = React.useState("");
+
 
   const navigate = useNavigate();
   const {user,setUser}=useContext(UserDataContext);
@@ -20,6 +22,8 @@ export default function UserLogin() {
       password: password, 
     })
 
+
+   try{
     const response = await axios.post("http://localhost:4000/users/login",userData);
     console.log(response)
 
@@ -31,6 +35,15 @@ export default function UserLogin() {
       localStorage.setItem("user",data.user._id);
       navigate("/home")
     }
+   }catch(err){
+    if(err.response.status === 404){
+      console.log(err.response.data.errors)
+      setError(err.response.data.errors)
+    }
+    
+  }
+
+    
     setEmail("");
     setPassword("");
 
@@ -56,6 +69,8 @@ export default function UserLogin() {
         type="password" 
         placeholder="Enter password" 
         required/>
+
+      <p className="text-lg font-medium h-50 w-full flex justify-center text-red-500 mb-5">{error}</p>
 
         <button className="bg-[#111] text-white font-semibold px-4 py-2 rounded w-full text-lg placeholder:text-base mb-4">Login</button>
       <p className="text-center">New here? <Link to="/signup" className="text-blue-600">Crate new account</Link></p>

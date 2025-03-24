@@ -23,12 +23,12 @@ const Riding = () => {
             <Link to="/home" className="fixed top-2 right-2 bg-white w-10 h-10 flex items-center justify-center rounded-full">
             <i className="text-lg font-medium ri-home-4-line"></i>
             </Link>
-             <div className="h-1/2 ">
+             <div className="h-[60%] ">
              {/* <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" /> */}
              <LiveTracking/>
              </div>
 
-            <div className="h-1/2 p-4">
+            <div className="h-[40%] p-4">
                 <div className="flex items-center justify-between">
                     <img className="h-20" src="https://i.pinimg.com/originals/93/c1/05/93c105244c0a3de81267a89cb13386f7.png"></img>
                     <div className="text-right">

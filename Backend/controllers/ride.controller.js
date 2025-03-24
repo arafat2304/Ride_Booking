@@ -13,7 +13,10 @@ module.exports.createRide = async (req, res) => {
     
     try{
         
-        const ride = await rideService.createRide({user:req.user._id,pickup,destination,vehicalType});
+        const distance = await mapService.getDistanceTime(pickup,destination);
+        const ride = await rideService.createRide({user:req.user._id,pickup,destination,vehicalType,});
+        ride.distance=distance.distance.text;
+        ride.duration=distance.duration.text;
         ride.save();
         res.status(201).json(ride);
 
@@ -41,6 +44,7 @@ module.exports.getFare = async (req, res) => {
     if(!validationResult(req).isEmpty()){
         return res.status(400).json({messages:validationResult(req).array()});
     }
+
 
     const {pickup,destination}=req.query;
 
@@ -101,7 +105,6 @@ module.exports.endRide = async (req,res)=>{
     const {rideId} = req.body;
     try{
         const ride = await rideService.endRide({rideId,captain:req.captain});
-        console.log(ride)
         sendMessageToSocketId(ride.user.socketId,{
             event:"ride-ended",
             data:ride
