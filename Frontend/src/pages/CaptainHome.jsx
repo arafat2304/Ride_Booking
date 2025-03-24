@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { SocketContext } from "../context/SocketContext";
 import { CaptainDataContext } from "../context/CaptainContext";
 import axios from "axios";
+import LiveTracking from "../components/LiveTracking";
 
 function CaptainHome() {
 
@@ -133,7 +134,8 @@ useGSAP(function(){
         </Link>
          </div>
          <div className="h-3/5">
-         <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" />
+         {/* <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" /> */}
+         <LiveTracking/>
          </div>
 
         <div className="h-2/5 p-4">

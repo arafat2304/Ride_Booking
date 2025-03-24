@@ -57,6 +57,7 @@ const Home = () => {
     });
 
     socket.on('ride-ended',ride=>{
+        console.log("Ride ended:",ride);
         navigate("/home");
     })
 

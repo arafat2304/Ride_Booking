@@ -3,6 +3,7 @@ import { Link , useLocation } from "react-router-dom";
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import FinsihRidePopUp from "../components/FinishRidePopUp";
+import LiveTracking from "../components/LiveTracking";
 
 const CaptainRiding = () =>{
 
@@ -33,7 +34,8 @@ const CaptainRiding = () =>{
          </div>
 
          <div className="h-4/5">
-         <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" />
+         {/* <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" /> */}
+         <LiveTracking/>
          </div>
 
          <div className="h-1/4 p-6 pt-2 flex justify-between bg-yellow-400  items-center relative" onClick={()=>setFinishRidePanel(true)}>

@@ -29,6 +29,7 @@ module.exports.getDistanceTime = async (origin, destination) => {
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=${apiKey}`;
     try{
         const response = await axios.get(url);
+        console.log(response.data.rows[0].elements[0]);
         if(response.data.status === "OK"){
            if(response.data.rows[0].elements[0].status === "ZERO_RESULTS"){
                 throw new Error("Invalid origin or destination");
