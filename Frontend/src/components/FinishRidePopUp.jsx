@@ -25,7 +25,7 @@ const FinsihRidePopUp = ({setFinishRidePanel,rideData}) =>{
         }
     }
     return(
-        <div className="w-full">
+        <div className="w-full  lg:w-1/2  lg:w-1/2 lg:flex-row lg:mx-[300px]">
         <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setFinishRidePanel(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
         <h3 className="text-2xl font-semibold">Finish this Ride!</h3>
 

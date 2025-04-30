@@ -50,9 +50,9 @@ export default function UserLogin() {
   }
 
   return(
-    <div className="p-7 flex justify-between flex-col h-screen">
-      <div>
-      <img className="w-16 mb-10" src="https://www.pngall.com/wp-content/uploads/4/Uber-Logo-PNG-Free-Image.png"/>
+    <div className="p-7 flex justify-between flex-col h-screen lg:h-screen lg:w-1/2 lg:mx-[300px]">
+      <div className="mt-12">
+        <p className="text-xl font-semibold mb-5">One step is away for Destination..</p>
       <form className="" onSubmit={handleSubmit}>
         <h3 className="text-lg font-medium mb-2">What's your email</h3>
         <input 

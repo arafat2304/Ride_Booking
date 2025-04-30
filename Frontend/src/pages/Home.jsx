@@ -12,6 +12,7 @@ import { SocketContext } from "../context/SocketContext";
 import {UserDataContext} from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import LiveTracking from "../components/LiveTracking";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     const [pickup,setPickup] = useState("");
@@ -199,9 +200,7 @@ const Home = () => {
     return (
         <div className="h-screen relative overflow-hidden">
            
-    `       <div className="absolute top-0 h-screen w-screen ">
-                 <img className="w-16 absolute left-5 top-5" src="https://www.pngall.com/wp-content/uploads/4/Uber-Logo-PNG-Free-Image.png" alt="" />
-                 {/* <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" /> */}
+    `       <div className="absolute top-0 h-screen w-screen z-0">
                 <LiveTracking/>
             </div>
             <div className="absolute  top-0 w-full flex flex-col justify-end h-screen  ">
@@ -212,7 +211,11 @@ const Home = () => {
                     >
                         <i className="ri-arrow-down-wide-line"></i>
                     </h5>
+                    <div className="flex justify-between flex-ro">
                     <h4 className="text-2xl font-semibold mb-3">Find a trip</h4>
+                    <Link  to="/login"><i className=" text-3xl ri-logout-box-r-line"></i></Link>
+                    </div>
+                    
                     <form onSubmit={submitHandler}>
                         <input 
                         className="bg-[#eee] w-full border rounded-lg text-lg px-8 py-3 mb-3"

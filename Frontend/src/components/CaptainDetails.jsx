@@ -14,7 +14,7 @@ const CaptainDeaitails =()=>{
     // console.log(JSON.parse(user))
 
     return (
-        <div>
+        <div className="lg:h-[150px] lg:w-1/2 lg:mx-[300px] ">
             <div className='flex items-center justify-between mt-5'>
                 <div className='flex items-center justify-start gap-3'>
                     <img className='h-10 w-10 rounded-full object-cover' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdlMd7stpWUCmjpfRjUsQ72xSWikidbgaI1w&s" alt="" />

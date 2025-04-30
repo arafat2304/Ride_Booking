@@ -123,14 +123,14 @@ useGSAP(function(){
         },[confirmRidePopUpPanel])
 
     return ( 
-        <div className="h-screen">
-         <div className="flex items-center justify-between fixed top-0 p-3 w-screen">
-            <img className="w-16" src="https://www.pngall.com/wp-content/uploads/4/Uber-Logo-PNG-Free-Image.png" alt=""/>
-            <Link to="/home" className="h-10 w-10 bg-white flex items-center justify-center rounded-full">
-        <i className="text-lg font-medium ri-logout-box-r-line"></i>
+        <div className="h-screen ">
+         <div className="flex items-center justify-between fixed top-0 p-3 w-screen ">
+            {/* <img className="w-16" src="https://www.pngall.com/wp-content/uploads/4/Uber-Logo-PNG-Free-Image.png" alt=""/> */}
+            <Link to="/home" className="h-10 w-10 bg-white flex items-center justify-end rounded-full lg:flex lg:ml-auto">
+        <i className="text-lg font-medium ri-logout-box-r-line lg:w-[100px] "></i>
         </Link>
          </div>
-         <div className="h-3/5">
+         <div className="h-3/5 lg:w-1/2 lg:mx-[300px] lg:h-[300px]">
          {/* <img  className="h-full w-full object-cover" src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif" alt="" /> */}
          <LiveTracking/>
          </div>

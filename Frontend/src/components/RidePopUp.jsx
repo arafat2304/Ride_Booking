@@ -2,7 +2,7 @@ import React from "react";
 
 const RidePopUp =({setRidePopUpPanel,setConfirmRidePopUpPanel,ride,confirmRide})=>{
     return(
-        <div className="w-full">
+        <div className="w-full lg:w-1/2 lg:flex-row lg:mx-[300px]">
         <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setRidePopUpPanel(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
         <h3 className="text-2xl font-semibold">New Ride Available</h3>
 
