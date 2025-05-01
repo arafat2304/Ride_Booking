@@ -2,7 +2,7 @@ import React from "react";
 
 const VehicalPanel = ({setVehicalPanel,setConfirmeRidePanel,fare,setVehicalType})=>{
     return(
-        <div className="">
+        <div className="lg:w-1/2 lg:mx-[300px] lg:h-[300px]">
              <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setVehicalPanel(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
                 <div onClick={()=>{
                     setConfirmeRidePanel(true);

@@ -19,7 +19,7 @@ const Riding = () => {
     const {ride} = location.state;
     console.log(ride);
     return (
-        <div className="h-screen">
+        <div className="h-screen lg:w-1/2 lg:mx-[300px] lg:h-[300px]">
             <Link to="/home" className="fixed top-2 right-2 bg-white w-10 h-10 flex items-center justify-center rounded-full">
             <i className="text-lg font-medium ri-home-4-line"></i>
             </Link>

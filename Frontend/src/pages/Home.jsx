@@ -103,7 +103,7 @@ const Home = () => {
         if(panelOpen){
             gsap.to(panelRef.current,{
                 height:"70%",
-                padding:24
+                padding:24,
             })
             gsap.to(panelCloseRef.current,{
                 opacity:1
@@ -200,11 +200,11 @@ const Home = () => {
     return (
         <div className="h-screen relative overflow-hidden">
            
-    `       <div className="absolute top-0 h-screen w-screen z-0">
+        `       <div className="absolute top-0 h-screen w-screen z-0 lg:w-1/2 lg:mx-[300px] lg:h-[300px]">
                 <LiveTracking/>
             </div>
-            <div className="absolute  top-0 w-full flex flex-col justify-end h-screen  ">
-                <div className="h-[30%] bg-white p-6 relative">
+            <div className="absolute  top-0 w-full flex flex-col justify-end h-screen ">
+                <div className="h-[30%] bg-white p-6 relative lg:w-1/2 lg:mx-[300px] lg:h-[300px] lg:pt-[50px]">
                     <h5 ref={panelCloseRef} className="absolute opacity-0 right-6 top-6 text-2xl " onClick={()=>{
                         setPanelOpen(false);
                     }}

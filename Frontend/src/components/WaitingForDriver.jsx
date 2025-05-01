@@ -2,7 +2,7 @@ import React from "react";
 
 const WaitingForDriver = ({setWaitingForDriver,ride}) => {
     return (
-        <div className="w-full">
+        <div className="w-full lg:w-1/2 lg:mx-[280px] lg:h-[350px]">
         <h5 className="absolute p-1 top-0 w-[93%] text-center" onClick={()=>setWaitingForDriver(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
 
         <div className="flex items-center justify-between">

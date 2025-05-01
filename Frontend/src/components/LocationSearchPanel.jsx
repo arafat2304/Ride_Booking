@@ -13,7 +13,7 @@ const LocationSearchPanel = ({suggestions,setPanelOpen,setVehicalPanel,setPickup
     // setPanelOpen(false)
 }
     return(
-        <div className=" pt-10">
+        <div className=" lg:w-1/2 lg:mx-[300px] lg:h-[300px]">
           {
            suggestions.map((e,idx)=>(
               // return(

@@ -2,7 +2,7 @@ import React from "react";
 
 const LookingForDriver = ({setVehicalFound,pickup,destination,vehicalType,fare})=>{
     return(
-        <div className="w-full">
+        <div className="w-full lg:w-1/3 lg:mx-[450px] lg:h-[520px]">
         <h5 className="absolute top-0 w-[93%] text-center" onClick={()=>setVehicalFound(false)}><i className="text-3xl ri-arrow-down-wide-line"></i></h5>
         <h3 className="text-2xl font-semibold">Looking For Driver</h3>
 
