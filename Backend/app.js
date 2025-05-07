@@ -9,7 +9,6 @@ const captainRoute=require("./routes/captain");
 const cookieParser=require("cookie-parser");
 const mapRoute=require("./routes/map.routes");
 const rideRoute=require("./routes/ride.routes");
-
 connectToDB();
 
 app.use(cors());
@@ -23,6 +22,9 @@ app.get("/",(req,res)=>{
 
 
 app.use("/users",userRoute);
+// app.use("/users",proxy('http://localhost:3001'));
+// app.use("/captains",proxy('http://localhost:3002'));
+// app.use("/rides",proxy('http://localhost:3003'));
 app.use("/captains",captainRoute);
 app.use("/maps",mapRoute);
 app.use("/rides",rideRoute)
