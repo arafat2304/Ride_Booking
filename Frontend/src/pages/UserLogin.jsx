@@ -36,6 +36,7 @@ export default function UserLogin() {
       navigate("/home")
     }
    }catch(err){
+    console.log(err)
     if(err.response.status === 404){
       console.log(err.response.data.errors)
       setError(err.response.data.errors)

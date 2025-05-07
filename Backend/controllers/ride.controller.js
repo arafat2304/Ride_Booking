@@ -101,7 +101,7 @@ module.exports.endRide = async (req,res)=>{
     if(!validationResult(req).isEmpty()){
         return res.status(400).json({messages:validationResult(req).array()});
     }
-
+console.log("hii")
     const {rideId} = req.body;
     try{
         const ride = await rideService.endRide({rideId,captain:req.captain});

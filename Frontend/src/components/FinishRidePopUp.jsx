@@ -17,7 +17,7 @@ const FinsihRidePopUp = ({setFinishRidePanel,rideData}) =>{
                 Authorization:`Bearer ${localStorage.getItem('captainToken')}`
             }
         })
-
+        console.log(response);
         if(response.status===200){
             setFinishRidePanel(false);
             navigator("/captain-home");

@@ -126,7 +126,7 @@ useGSAP(function(){
         <div className="h-screen ">
          <div className="flex items-center justify-between fixed top-0 p-3 w-screen ">
             {/* <img className="w-16" src="https://www.pngall.com/wp-content/uploads/4/Uber-Logo-PNG-Free-Image.png" alt=""/> */}
-            <Link to="/home" className="h-10 w-10 bg-white flex items-center justify-end rounded-full lg:flex lg:ml-auto">
+            <Link to="/captain-login" className="h-10 w-10 bg-white flex items-center justify-end rounded-full lg:flex lg:ml-auto">
         <i className="text-lg font-medium ri-logout-box-r-line lg:w-[100px] "></i>
         </Link>
          </div>
