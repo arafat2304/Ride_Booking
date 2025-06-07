@@ -24,7 +24,7 @@ export default function UserLogin() {
 
 
    try{
-    const response = await axios.post("http://localhost:4000/users/login",userData);
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/login`,userData);
     console.log(response)
 
     if(response.status === 200){

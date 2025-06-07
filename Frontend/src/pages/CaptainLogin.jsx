@@ -16,7 +16,6 @@ export default function CaptainLogin() {
   
   const value =useContext(CaptainDataContext);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -26,7 +25,7 @@ export default function CaptainLogin() {
     });
    try{
 
-    const response = await axios.post("http://localhost:4000/captains/login",captain);
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/captains/login`,captain);
 
     
     if(response.status==200){

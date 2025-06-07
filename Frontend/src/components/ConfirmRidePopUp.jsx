@@ -10,7 +10,7 @@ const ConfirmRidePopUp = ({setConfirmRidePopUpPanel,setRidePopUpPanel,ride})=>{
 
    async function submitHandler(e){
         e.preventDefault();
-        const response = await axios.get(`http://localhost:4000/rides/start-ride`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/rides/start-ride`, {
             params: {
                 rideId: ride._id,
                 otp: otp

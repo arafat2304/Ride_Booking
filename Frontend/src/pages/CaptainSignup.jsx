@@ -38,7 +38,7 @@ export default function CaptainSignup() {
       }
   }); 
 
-  const response = await axios.post("http://localhost:4000/captains/register",captainData);
+  const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/captains/register`,captainData);
  console.log(response.data)
   if(response.status==201){
     const data = response.data;

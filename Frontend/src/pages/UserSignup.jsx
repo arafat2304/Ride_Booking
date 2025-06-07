@@ -23,7 +23,7 @@ const UserSignup = () => {
             email: email,
             password: password,
           }); 
-          let response = await axios.post("http://localhost:4000/users/register", newUser);
+          let response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/register`, newUser);
           console.log(response)
 
           if(response.status ===201){

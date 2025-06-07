@@ -11,7 +11,7 @@ const Riding = () => {
     const navigator = useNavigate();
 
     
-    socket.on("ride-end",ride=>{
+    socket.on("ride-ended",ride=>{
         navigator("/home");
     });
 
@@ -57,7 +57,7 @@ const Riding = () => {
                     </div>
 
                 </div>
-                <button className="w-full mt-5 bg-green-600 p-2 font-semibold text-white rounded-lg">Make a Payment</button>
+                <button  on onClick={()=>navigator("/home")} className="w-full mt-5 bg-green-600 p-2 font-semibold text-white rounded-lg">Make a Payment</button>
             </div>
         </div>
         

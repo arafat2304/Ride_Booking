@@ -80,7 +80,7 @@ async function confirmRide() { // Ensure ride is passed as an argument
         console.log("Captain:", captain);
         console.log("Ride ID:", ride._id);
 
-        const response = await axios.post(`http://localhost:4000/rides/confirm`, {
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/rides/confirm`, {
 
             rideId: ride._id,
             captain: captain,

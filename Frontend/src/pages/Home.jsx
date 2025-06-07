@@ -58,7 +58,7 @@ const Home = () => {
     });
 
     socket.on('ride-ended',ride=>{
-        console.log("Ride ended:",ride);
+        console.log("hii 2");
         navigate("/home");
     })
 
@@ -171,7 +171,7 @@ const Home = () => {
         setVehicalPanel(true);
         setPanelOpen(false);
 
-            const response = await axios.get(`http://localhost:4000/rides/getFare`,{
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/rides/getFare`,{
                 params:{pickup,destination},
                 headers:{
                     Authorization:`Bearer ${localStorage.getItem("token")}`
@@ -184,7 +184,7 @@ const Home = () => {
 
     async function createRide(){
 
-        const response = await axios.post(`http://localhost:4000/rides/create`,{
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/rides/create`,{
             pickup,
             destination,
             vehicalType

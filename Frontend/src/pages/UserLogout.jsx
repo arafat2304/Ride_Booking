@@ -8,7 +8,7 @@ const UserLogout = ()=>{
     const token = localStorage.getItem("token");
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/users/logout",{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/logout`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }

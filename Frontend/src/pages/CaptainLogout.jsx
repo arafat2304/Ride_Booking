@@ -9,7 +9,7 @@ const CaptainLogout = ()=>{
     console.log(token)
         
     useEffect(()=>{
-        axios.get("http://localhost:4000/captains/logout",{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/captains/logout`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }
