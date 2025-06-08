@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState,useContext } from 'react';
 import axios from 'axios';
-import {UserDataContext} from '../context/userContext';
+import {UserDataContext} from '../context/UserContext';
 const UserSignup = () => {
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState(""); 
