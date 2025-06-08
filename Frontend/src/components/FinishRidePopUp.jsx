@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 const FinsihRidePopUp = ({setFinishRidePanel,rideData}) =>{
 
     const navigator = useNavigate();
-    console.log(localStorage.getItem('captainToken'));
+    console.log(import.meta.env.VITE_BACKEND_URL);
 
     const endRide = async () =>{
 
-        const response = await axios.post("http://localhost:4000/rides/end-ride",{
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/rides/end-ride`,{
                 rideId:rideData._id
         },{
             headers:{
