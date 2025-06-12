@@ -31,7 +31,7 @@ export default function UserLogin() {
       const data = response.data
       setUser(data.user);
       console.log(data)
-      localStorage.setItem("userToken",data.token);
+      localStorage.setItem("token",data.token);
       localStorage.setItem("user",data.user._id);
       navigate("/home")
     }

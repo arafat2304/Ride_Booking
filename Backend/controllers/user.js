@@ -39,6 +39,7 @@ if(!validationResult(req).isEmpty()){
     if(!isMatch){
         return res.status(404).json({errors:"Invalid Email or Password"});
     }
+    res.clearCookie('token');
 
     const token=user.generateAuthToken();
     res.cookie("token",token);

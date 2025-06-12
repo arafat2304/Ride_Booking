@@ -8,7 +8,7 @@ const CaptainProtectionWeapper = ({children})=>{
 
         const navigate= useNavigate();
         const {captain,setCaptain}=useContext(CaptainDataContext);
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("captainToken");
 
        useEffect(()=>{
         if(!token){

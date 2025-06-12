@@ -88,7 +88,7 @@ async function confirmRide() { // Ensure ride is passed as an argument
 
         }, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('captainToken')}`
             }
         })
         console.log("Ride confirmed:", response.data);

@@ -32,7 +32,6 @@ export default function CaptainLogin() {
       const data = response.data;
       console.log(data)
       localStorage.setItem("captain", JSON.stringify(data.captain));
-      localStorage.setItem("token",data.token);
       localStorage.setItem("captainToken",data.token);
       localStorage.setItem("_id",data.captain._id);
       console.log(localStorage.getItem("token"));
