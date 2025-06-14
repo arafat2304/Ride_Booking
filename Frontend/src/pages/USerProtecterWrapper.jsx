@@ -5,7 +5,7 @@ import { UserDataContext } from "../context/UserContext";
 
 const UserProtecterWrapper = ({children})=>{
     const navigate = useNavigate()
-    const token = localStorage.getItem("userToken");
+    const token = localStorage.getItem("token");
 
     const {user,setUser}=useContext(UserDataContext);
    
