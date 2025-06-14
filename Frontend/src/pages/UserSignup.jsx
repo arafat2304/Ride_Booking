@@ -29,7 +29,7 @@ const UserSignup = () => {
           if(response.status ===201){
             const data = response.data;
             setUser(data.user);
-            localStorage.setItem("userToken",data.token);
+            localStorage.setItem("token",data.token);
             navigate('/home');
           }
          setEmail("");
