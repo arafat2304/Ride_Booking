@@ -15,7 +15,6 @@ function CaptainHome() {
 
 const {captain}=useContext(CaptainDataContext);
 const {socket}=useContext(SocketContext);
-console.log(localStorage.getItem("token"));
 const [ridePopUpPanel,setRidePopUpPanel]=useState(false);
 const ridePopUpPanelRef=useRef(null);
 const [confirmRidePopUpPanel,setConfirmRidePopUpPanel]=useState(false);
@@ -77,8 +76,6 @@ async function confirmRide() { // Ensure ride is passed as an argument
             return;
         }
 
-        console.log("Captain:", captain);
-        console.log("Ride ID:", ride._id);
 
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/rides/confirm`, {
 

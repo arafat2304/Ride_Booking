@@ -7,10 +7,12 @@ const ConfirmRidePopUp = ({setConfirmRidePopUpPanel,setRidePopUpPanel,ride})=>{
 
     const naviagtor= useNavigate();
     const [otp,setOtp]=useState("");
+    const[validOtp,setValidOtp]=useState("");
 
    async function submitHandler(e){
         e.preventDefault();
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/rides/start-ride`, {
+        try{
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/rides/start-ride`, {
             params: {
                 rideId: ride._id,
                 otp: otp
@@ -24,6 +26,9 @@ const ConfirmRidePopUp = ({setConfirmRidePopUpPanel,setRidePopUpPanel,ride})=>{
             setConfirmRidePopUpPanel(false)
             setRidePopUpPanel(false)
             naviagtor('/captain-riding', { state: { ride: ride } })
+        }
+        }catch(err){
+            setValidOtp(err.response.data.messages[0].msg);
         }
     }
 
@@ -67,6 +72,7 @@ const ConfirmRidePopUp = ({setConfirmRidePopUpPanel,setRidePopUpPanel,ride})=>{
           <div className="w-full mt-7">
             <form action="" onSubmit={submitHandler}>
                 <input type="number" value={otp}  onChange={(e)=>setOtp(e.target.value)} className="bg-[#eee] w-full border rounded-lg text-lg px-8 py-3 mb-5 font-mono" placeholder="Enter OTP"/>
+                <p className="text-lg font-medium h-50 w-full flex justify-center text-red-500 mb-5">{validOtp}</p>
             <button className="w-full text-lg flex justify-center bg-green-600 p-3 font-semibold text-white rounded-lg">Confirm</button>
 
 <button onClick={()=>{setConfirmRidePopUpPanel(false),setRidePopUpPanel(false)}

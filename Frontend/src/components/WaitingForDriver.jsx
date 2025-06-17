@@ -8,7 +8,7 @@ const WaitingForDriver = ({setWaitingForDriver,ride}) => {
         <div className="flex items-center justify-between">
         <img className="h-20" src="https://i.pinimg.com/originals/93/c1/05/93c105244c0a3de81267a89cb13386f7.png"></img>
         <div className="text-right">
-            <h2 className="text-lg font-medium">{ride?.captain.fullName.firstName+" "+ride?.captain.fullName.lastName}</h2>
+            <h2 className="text-lg font-medium">{ride?.captain.fullName?.firstName+" "+ride?.captain.fullName.lastName}</h2>
             <h4 className="text-xl font-semibold -mt-1 -mb-1">{ride?.captain.vehical.plate}</h4>
             <p className="text-sm text-grey-600">Maruti Suzuki Alto</p>
             <h1 className="text-lg font-semibold">{ride?.otp}</h1>
